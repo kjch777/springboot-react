@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- myBatis 에서, NULL 값을 처리하는 방법을 지정하는 설정이다.
+			(DB 또는 Java 에서 가져오는 값이 NULL 일 때, 이것을 어떻게 처리할 것인지)
+			value 에 NULL 이라고 작성하면 NULL 이 들어갈 것이고,
+			value="VARCHAR2 또는 int" 등을 작성하면, 특정 값으로 NULL 을 DB 에 전달하겠다는 것이다. -->
+		<setting name="jdbcTypeForNull" value="NULL" />
+		
+		<!-- Underscore: todo_list 처럼 중간에 _ 가 들어가는 것
+		     CamelCase: todoList 처럼
+		     DB 에 언더스코어 형식으로 작성된 값을, java 에서는 카멜케이스 형식으로 표기하겠다는 선언이다. -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+</configuration>
