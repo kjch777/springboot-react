@@ -29,7 +29,7 @@ public class TodoController {
 	 * 사용하고자 하는 아이디가 DB 에 존재하지 않으면 0
 	 * **/
 	
-	@GetMapping("idCheck")
+	@GetMapping("/idCheck")
 	public int idCheck(@RequestParam("id") String id) {
 		return service.idCheck(id);
 	}

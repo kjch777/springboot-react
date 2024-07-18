@@ -56,7 +56,7 @@ public class DBConfig {
 		// src/main/resources 바로 하위에 있는 mappers 폴더 안에 작성된
 		// xml 로 끝나는 모든 파일을 가리키겠다는 **(모두 가리키기) 표기 작성
 		// classpath == src/main/resources
-		sfb.setMapperLocations(applicationContext.getResources("classpath:/mappers.**xml"));
+		sfb.setMapperLocations(applicationContext.getResources("classpath:/mappers/**.xml"));
 		
 		// DTO 모델이 모여있는 패키지 설정
 		// Alias == 별칭, Aliases == 별칭들
