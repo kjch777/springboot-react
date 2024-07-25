@@ -33,3 +33,32 @@
   color: red;
   font-weight: bold; /* 글자 굵게*/
 }
+
+.todo-container {
+  padding: 20px;
+  width: 500px;
+}
+
+.todo-container li {
+  margin-bottom: 10px;
+}
+
+.todo-container li > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* span 태그에서 가장 마지막에 있는 삭제 버튼에서 다음 줄로 넘김 처리한 것*/
+.todo-container li > div span:last-child {
+  display: flex;
+}
+
+/* 수정 삭제 버튼 좌우 간격 주기*/
+.todo-container li > div button {
+  margin: 0 5px;
+}
+
+/* 가운데 줄 긋기*/
+.todo-complete {
+  text-decoration: line-through;
+}

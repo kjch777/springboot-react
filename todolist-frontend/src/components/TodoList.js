@@ -30,7 +30,7 @@ export const TodoList = () => {
       body: JSON.stringify({
         title: inputTodo,
         todoMemberNo: loginMember.todoMemberNo,
-      }),
+      })
     })
       .then((response) => response.text())
       .then((todoNo) => {
@@ -42,7 +42,7 @@ export const TodoList = () => {
         const newTodo = {
           todoNo: todoNo,
           title: inputTodo,
-          isDone: "O",
+          isDone: "Y",
           todoMemberNo: loginMember.todoMemberNo,
         };
         // 기존 todoList + newTodo 를 이용해 새로운 할 일 만들기
@@ -69,13 +69,14 @@ export const TodoList = () => {
     fetch("/todo", {
       method: "put", // Controller 에서 @PutMapping 으로 작성한다고 했기 때문에 put 을 쓴 것이다.
       headers: {'Content-Type' : 'application/json'},
-      todoNo: todo.todoNo,
-      isDone: todo.isDone === 'O' ? 'X' : 'O' /* 삼항연산자 조건이 ? true 일 때 실행할 구문 : false 일 때 실행할 구문
+      body: JSON.stringify({
+        todoNo: todo.todoNo,
+        isDone: todo.isDone === 'Y' ? 'N' : 'Y'}) /* 삼항연산자 조건이 ? true 일 때 실행할 구문 : false 일 때 실행할 구문
                                                                     todo.isDone === 'O' ? 'X'
-                                                 만약 할 일 완료 여부에 O 로 표시되어 있다면, X 로 글자 변경하기
+                                                     만약 할 일 완료 여부에 O 로 표시되어 있다면, X 로 글자 변경하기
                                                                     todo.isDone === 'O' ? todo.isDone 이 X 라면 ◀ 을 뜻하는 표기이다.
                                                                     todo.isDone === 'O' ? 'O'
-                                                 만약 할 일 완료 여부에 X 로 표시되어 있다면, O 로 글자 변경하기*/
+                                                     만약 할 일 완료 여부에 X 로 표시되어 있다면, O 로 글자 변경하기*/
     })
     .then(response => response.text())
     .then(result => {
@@ -91,14 +92,43 @@ export const TodoList = () => {
       const newTodoList = [...todoList];
 
       // index 번호의 태그 값을 O 또는 X 로 변경하기
-      newTodoList[index].isDone = newTodoList[index].isDone === 'O' ? 'X' : 'O';
+      newTodoList[index].isDone = newTodoList[index].isDone === 'Y' ? 'N' : 'Y';
 
       setTodoList(newTodoList);
     })
     .catch(e => console.log(e));
   };
 
-  const todoDeleteBtn = () => {};
+  /* 삭제하고 싶은 할 일의 번호를 가지고 삭제하기*/
+  const todoDeleteBtn = (todoNo, index) => {
+    fetch("/todo", {
+      method: 'delete',
+      headers: {'Content-Type' : 'application/json'},
+      body: todoNo
+    })
+    .then(response => response.text()) // 응답 결과를 글자 형식으로 가져오겠다는 코드이다.
+    .then(result => {
+
+      if(result === '0') {
+        alert("삭제에 실패하였습니다.");
+        return;
+      }
+
+      const newTodoList = [...todoList]; // 배열 복사
+
+      // 배열.splice(index, 몇 칸)
+      // ▶ 배열의 index 몇번째 태그부터 몇 칸을 잘라내어 변환할 지 지정하는 것이다.
+      // 배열에서 잘라진 부분이 사라진다.
+      newTodoList.splice(index, 1); // (내가 선택한 번호, 한 칸만 삭제)
+      /* 
+        newTodoList.                   splice            (index, 1);
+      새로운할일목록.괄호안에작성한부분을제외하고,목록새로작성(index, 1);*/
+      
+      setTodoList(newTodoList); // 새로 작성한 목록으로 기존 목록 대체하기
+    })
+    // 삭제가 정상적으로 되지 않을 때, 왜 문제가 생겼는지 개발자용 console 창에서만 보여주기
+    .catch(e => console.log(e));
+  };
 
   return (
     <div>
@@ -118,7 +148,7 @@ export const TodoList = () => {
           {todoList.map((todo, index) => (
             <li key={keyIndex++}>
               <div>
-                <span className={todo.isDone === "X" ? "todo-complete" : ""}>
+                <span className={todo.isDone === "N" ? "todo-complete" : ""}>
                   {todo.title}
                 </span>
                 <span>
