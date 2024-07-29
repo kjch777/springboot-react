@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kh.mapper.UserMapper">
+	<select id="findAll">
+		select * from user
+	</select>
+	<!-- insert delete select -->
+	<!-- 
+		useGeneratedKeys="true" DB 에서 Auto_increment(자동 증가) 설정을 했을 때, Key 값을 자동으로 넣을 수 있도록 설정해주는 것
+		keyProperty="id" 자동으로 증가하는 기준이 되는 Key 설정은, 어떤 칼럼을 가리킬 것인지 설정해주는 것
+	 -->
+	<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+		insert into user(name, email)
+		values (#{name}, #{email})
+	</insert>
+	
+	<delete id="deleteUser" parameterType="User">
+		delete from user where id = #{id}
+	</delete>
+	
+	<update id="updateUser" parameterType="User">
+		update user set name = #{name}, email = #{email} where id = #{id}
+	</update>
+</mapper>
