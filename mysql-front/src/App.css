@@ -36,3 +36,56 @@
     transform: rotate(360deg);
   }
 }
+
+/***** UserTable UserForm CSS *****/
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+
+  /*
+    border-collapse: table 에서 주로 사용한다.
+    한 줄씩 자동으로 간격을 줄 수 있다.
+    
+    border-collapse: 안에 있는 기능 중 어떤 것을 사용하더라도,
+                     표에 비슷한 효과를 줄 수 있고, 기능 상 차이는 미미하다.
+  */
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}

@@ -3,18 +3,27 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { UserTable } from './component/UserTable';
 import { UserForm } from './component/UserForm';
+import { EditUserForm } from './component/EditUserForm';
 // select insert component 추가 작성
 function App() {
   const [users, setUsers] = useState([]); // 회원 목록이 담길 빈 배열 생성
+  const [userToEdit, setUserToEdit] = useState(null); // 수정한 회원 정보를 잠시 가지고 있을 변수 생성
+
   // useEffect 는, button 또는 특정 값을 클릭하지 않아도, 자동으로 실행된다.(최초 1회만 실행할지, 주기적으로 실행할지 정하는 것)
   // App.js 가 실행되면 적용할 효과로, 만약 특정 변수명이 없다면, 기능이 최초 1회만 실행하고, 이후에는 실행되지 않는다.
   // useEffect(() => {기능}, [          ]);
   // 특정 변수명이 존재한다면, 특정 변수명에 변화가 있을 때마다 기능이 실행된다.
   // useEffect(() => {기능}, [특정 변수명]);
 
+  /***** useEffect 최초 1회만 실행 *****/
+  // useEffect(() => {
+  //   SeeAllUsers(); // 웹 사이트에 접속하면, 최초 1회만 모든 회원들이 보이고,
+  // }, []); // [] 로 배열이 비어있기 때문에, 웹 사이트에 접속했을 때, 딱 한번만 실행되는 것이다.
+
+  /***** useEffect [ ] 배열에 users 를 넣어, 회원 목록에 변화가 생기면 모두 불러오기 기능을 다시 실행할 수 있다. *****/
   useEffect(() => {
-    SeeAllUsers(); // 웹 사이트에 접속하면, 최초 1회만 모든 회원들이 보이고,
-  }, []); // [] 로 배열이 비어있기 때문에, 웹 사이트에 접속했을 때, 딱 한번만 실행되는 것이다.
+    SeeAllUsers(); // users: 회원 목록에 user 가 추가 또는 삭제되면 모든 user 다시보기
+  }, [/* users*/]); // [users] 로 배열에 users 가 들어있기 때문에, 회원 목록에 user 가 추가되거나, 삭제될 경우, 회원 목록을 자동으로 새로고침
 
   // const SeeAllUsers = () => {
   //   // axios 를 사용하여, 모든 회원을 보겠다는 기능 설정해주기
@@ -51,12 +60,14 @@ function App() {
   //   setUsers(res.data); // 가져오는 데에 성공하면, 가져온 데이터로 회원 목록을 만들어주는 것이다.
   //  }
 
+  /***** 추가된 모든 회원들을 보는 기능 *****/
   // async await 버전
   const SeeAllUsers = async () => {
     const res = await axios.get('/users');
     setUsers(res.data);
   };
 
+  /***** 회원 추가 버튼 기능 *****/
   // async await 사용해서 user 추가하기
   // addUser 에서 가져온 user 한 명을 넣어주기
   const addUser = async (user) => {
@@ -66,11 +77,72 @@ function App() {
     setUsers([...users], res.data);
   }
 
+  /***** 회원 삭제 버튼 기능 *****/
+  const deleteUser = async (id) => {
+    /*
+    " "   ' ' = 안의 값을 모두 글자 취급한다.
+    ` ` = 안의 특정 값을 변수명으로 취급해야할 때 사용한다.
+          `` 안에서 변수명으로 취급해야하는 값(상황마다 변경되어야 하는 값) 은 ${이 안에 작성한다.}
+
+    예시
+    `` 을 사용했을 때
+    http://localhost:3000/users?id=1
+
+    "" '' 을 사용했을 때
+    http://localhost:3000/users?id=${id}
+    */
+    await axios.delete(`/users`, {params: {id}});
+    /*
+        자바 Controller 에서, @DeleteMapping("/{id}") 매개변수(parameter) 에 (@PathVariable int id) 작성
+        리액트 axios 에서, id=${id} 작성
+        await axios.delete(`/users?id=${id}`);
+        주소 값에 id 대신 삭제할 번호가 들어갈 수 있도록 설정해주는 것이다.
+
+        자바 Controller 에서, @DeleteMapping() 에 특정 id 값을 설정하지 않을 경우
+        매개변수(parameter) 에 (@RequestParam("id") int id) // value-"id" ◀ frontend 에서 가져온 id 값이라고 정의한 것이다.
+        params: {id}
+        await axios.delete(`/users`, {params: {id}});
+    */
+    
+    /*
+    setUsers(users.filter(user => user.id != id));
+    users ◀ 현재 저장되어 있는 회원들 목록
+    user.id != id ◀ user.id 회원 ID 와, ID(삭제하려는 회원 ID) 가 서로 일치하지 않으면,
+    setUsers(새로운 회원 목록) 에 포함시키고,
+    id(삭제하려는 회원 ID) 와 user.id 가 서로 일치하는 ID 의 회원 정보는 삭제한 다음,
+    setUsers(새로운 회원 목록) 를 완성시킨다.
+
+    filter ◀ 회원 목록 걸러내기 기능, 조건
+    */
+    setUsers(users.filter(user => user.id !== id));
+  }
+
+  /***** 회원 정보 수정 버튼 기능 *****/
+  const updateUser = async (user) => {
+    await axios.put('/users', user); // @PutMapping 에서, /users 로 주소 값이 설정된, 수정하는 주소와 연결하기
+    
+    setUsers(users.map(u => (u.id === user.id ? user : u)));
+    // 수정한 회원의 id 값이 일치하는지 확인하고, id 값이 일치하지 않는다면,
+    // 기존에 있던 회원 정보 그대로, 수정하지 않고 전달하는 것이다.
+  }
+  
+  /***** 회원 정보 수정을 완료하면, 회원 목록에 수정된 회원을 전달하는 것 *****/
+  const editUser = (user) => {
+    setUserToEdit(user);
+  }
+
+  /***** 회원 정보 수정을 취소하면, 회원 목록에 *****/
+  const cancelEdit = () => {
+    setUserToEdit(null); // 회원 정보 수정을 취소할 때, 빈 값(null) 으로 변경하는 일종의 트릭이다.
+  }
+
+
   return (
     <div className="App">
       <h1>회원 관리</h1>
       <UserForm addUser={addUser} />
-      <UserTable users={users} />
+      <UserTable users={users} deleteUser={deleteUser} editUser={editUser} />
+      {userToEdit && (<EditUserForm userToEdit={userToEdit} updateUser={updateUser} cancelEdit={cancelEdit} />)}
     </div>
   );
 }

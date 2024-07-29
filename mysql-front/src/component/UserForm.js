@@ -7,6 +7,8 @@ export const UserForm = ({addUser}) => {
     const handleSubmit = (e) => {
         e.preventDefault(); // 제출 잠시 대기
         addUser({name, email});
+        setName(''); // input 에 입력된 내용을 제출하고, 입력된 이름 값 지워주기
+        setEmail(''); // input 에 입력된 내용을 제출하고, 입력된 이메일 값 지워주기
     }
 
     return (

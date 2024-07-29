@@ -11,7 +11,8 @@ const 컴포넌트명 = ({특정 값}) => { }
 
 // UserTable 컴포넌트는, 웹 사이트에 회원가입 한 유저들의 정보를 보는 공간이다.
 // App.js 에서 전달받은 User 값들을 받아와, 유저 정보를 보여줄 것이다.
-export const UserTable = ({users}) => {
+export const UserTable = ({users, deleteUser, updateUser}) => {
+    
     return (
         <table>
             <thead>
@@ -19,7 +20,8 @@ export const UserTable = ({users}) => {
                     <th>ID</th>
                     <th>NAME</th>
                     <th>EMAIL</th>
-                    <th>ACTIONS</th>
+                    <th>DELETE</th>
+                    <th>UPDATE</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +31,10 @@ export const UserTable = ({users}) => {
                         <td>{user.name}</td>
                         <td>{user.email}</td>
                         <td>
-                            <button>회원정보 삭제하기</button>
+                            <button onClick={() => deleteUser(user.id)}>회원정보 삭제하기</button>
+                        </td>
+                        <td>
+                            <button onClick={() => updateUser(user)}>회원정보 수정하기</button>
                         </td>
                     </tr>
                 ))}
