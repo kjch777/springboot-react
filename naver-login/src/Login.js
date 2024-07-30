@@ -1,7 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export const Login = () => {
     const [userInfo, setUserinfo] = useState(null);
+
+    // useEffect 를 활용하여 데이터 가져오기
+    // get 을 이용하여 특정 회원의 정보를 가져오는 주소 설정하기
+    useEffect = (() => {
+        const userInfo = () => {
+            fetch('http://localhost:9010/userInfo') // HTTP METHOD(GET POST PUT DELETE)
+            .then(resResult => { // then: fetch 가 자바 Controller 에서 값을 가져왔을 때 실행할 구문이다.
+                return resResult.json();
+            })
+            .then(data => { // ▲ then 에서 실행한 구문을 바탕으로, 데이터를 userInfo 에 넣어주기
+                setUserinfo(data);
+            })
+            .catch(err => { // ▲ 위의 두 then 모두 문제가 발생했을 때, 문제를 catch 할 구문이다.
+                console.error("Error userInfo: ", err);
+            })
+        }
+    })
+
+    }
 
     return (
         <>
