@@ -18,9 +18,8 @@ export const Login = () => {
                 console.error("Error userInfo: ", err);
             })
         }
-    })
-
-    }
+        userInfo(); // 회원정보 기능을 실행하는 구문
+    }, []) // 최초 1회만 실행하는 효과인지, 주기적으로 계속 실행하는 효과인지 설정하기
 
     return (
         <>
