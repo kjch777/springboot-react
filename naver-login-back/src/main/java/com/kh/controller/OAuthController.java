@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpSession;
  * @RequestMapping("/api") 을 제거한다.
  * **/
 @RestController
+@RequestMapping("/naver") // NaverRegist 와의 주소 충돌을 방지하기 위해 임의 작성
 public class OAuthController {
 
 	/**
