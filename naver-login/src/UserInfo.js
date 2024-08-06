@@ -51,8 +51,10 @@ export function UserInfo() {
             (<div>
                 <input type='text' value={userInfo.response.id} disabled />
                 <input type='email' value={userInfo.response.email} disabled />
-                <input type='email' value={userInfo.response.nickname} disabled />
-                <input type='email' value={userInfo.response.name} disabled />
+                <input type='text' value={userInfo.response.nickname} disabled />
+                <input type='text' value={userInfo.response.name} disabled />
+                <input type='text' value={userInfo.response.gender} disabled />
+                <img src={userInfo.response.profile_image} disabled style={{height: '250px', width: '250px'}} />
                 {/* 네이버에서 가져온 id 값을 input 에 넣어주고, 수정하지 못하게 막음 처리해주는 코드*/}
             </div>) : 
             (<p>회원을 찾을 수 없습니다.</p>)}
