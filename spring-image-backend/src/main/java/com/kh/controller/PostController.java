@@ -30,7 +30,12 @@ public class PostController {
 	}
 	
 	@GetMapping("/posts") // DB 에 저장된 게시물 제목, 내용, 이미지 가져오기
-	public ResponseEntity<List<Post>> findAll() {
+	public ResponseEntity<List<Post>> findAll() { // <이것은 객체를 구분하는 구분 괄호이다.>
+		// postService.findAll(); ◀ 데이터가 여럿이라 List 로 가져와야 하는데, List 로 전달해주지 않으면 React 에서 map ~ 오류가 발생한다.
+		
+		// List<Post> posts = postService.findAll();
+		// return ResponseEntity.ok(posts);
+		// 또는 ▼
 		return ResponseEntity.ok(postService.findAll());
 	}
 }

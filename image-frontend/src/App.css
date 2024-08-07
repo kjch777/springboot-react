@@ -2,37 +2,91 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-container {
+  margin-bottom: 20px;
+  padding: 10px;
+
+  /* #111: 검은색 ~ 중간: 검은색과 흰색 사이의 색깔 ~ #fff: 흰색 */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-container table {
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.form-container td {
+  padding: 10px;
+}
+
+/* form-container 내부의 label input CSS */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
   color: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.file-label input {
+  display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover, .file-label:hover {
+  background-color: #abc2db;
+  color: black;
+}
+
+.posts-container {
+  margin-top: 20px;
+}
+
+.post {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.post .images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.post .images img {
+
+  /* 가로 최대 길이 설정
+  100px 이상인 이미지도 최대 100px 까지만 */
+  max-width: 100px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
 }

@@ -15,8 +15,9 @@ public class WebConfig implements WebMvcConfigurer {
 	// 이미지 폴더 경로를 React 가 가져갈 수 있도록 허용해주기
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry r) {
+		// http://localhost:9010/images/모든 경로 허용
 		r.addResourceHandler("/images/**")
-		 .addResourceLocations("C:/Users/user1/Desktop/saveImg/"); // 바탕화면에 지정한 이미지 경로 넣어주기
+		 .addResourceLocations("file:C:/Users/user1/Desktop/saveImg/"); // 바탕화면에 지정한 이미지 경로 넣어주기
 	}
 	
 	@Override

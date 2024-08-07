@@ -93,7 +93,7 @@ public class PostServiceImpl implements PostService {
 		Post post = new Post();
 		post.setTitle(title);
 		post.setContent(content);
-		post.setImageUrl(String.join(",", fileNames));
+		post.setImageUrl(String.join(",", fileNames)); // 여러개의 이미지를 각각 , 로 구분짓기
 		insertPost(post);
 	}
 	
