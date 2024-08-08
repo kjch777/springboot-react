@@ -1,0 +1,27 @@
+.banner {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.banner-image {
+    width: 100%;
+    height: 200px;
+}
+
+.banner-text {
+    /*
+        한 공간 안에서, 정 가운데에 특정 값이 위치하게 만드는 css 공식
+            position: absolute; ◀ 절대 위치(특정 위치에 아예 고정시킬 때 사용한다.)
+            top: 50%; ◀ div 태그 안에서 가장 바깥에 있는 div 높이를 가운데
+            left: 50%; ◀ div 태그 안에서 가장 바깥에 있는 div 가로 왼쪽을 기준으로 가운데
+            transform: translate(-50%, -50%); ◀ 최종 위치 조정(해당 요소를 감싸는 div 와 해당 요소가 존재하는 div 에서 정 가운데)
+    */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}

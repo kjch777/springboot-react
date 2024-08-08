@@ -4,5 +4,6 @@
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
 		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- mapUnderscoreToCamelCase 는 만약 칼럼명에 언더바가 있다면 카멜케이스 형식으로 변경하겠다는 의미의 코드이다. -->
 	</settings>
 </configuration>
