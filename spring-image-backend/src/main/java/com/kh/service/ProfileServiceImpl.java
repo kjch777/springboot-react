@@ -37,7 +37,7 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 	
 	@Override
-	public void uploadProfile(MultipartFile[] files, String username, String profileImageUrl) {
+	public void uploadProfile(MultipartFile[] files, String username) {
 		// 폴더가 존재하는지 확인 후, 존재하지 않는다면 생성해주기
 		// 폴더 또한 하나의 파일이므로, 파일로 폴더 확인을 진행한다.
 		// 글자 이외에는 모두 파일이라고 생각하면 쉽다.

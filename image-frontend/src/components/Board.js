@@ -3,6 +3,10 @@ import axios from 'axios';
 import '../App.css';
 
 const Board = () =>  {
+
+    const postsAPI = "http://localhost:9010/posts";
+    const uploadAPI = "http://localhost:9010/gallery/upload";
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [files, setFiles] = useState([]);
@@ -21,7 +25,7 @@ const Board = () =>  {
         formData.append("content", content);
 
         // axios.post 를 사용하여 Java Controller 에 데이터 전송하기
-        axios.post("/gallery/upload", formData, { // "http://localhost:9010/gallery/upload" 형식으로 작성해주어도 된다.
+        axios.post(uploadAPI, formData, { // "http://localhost:9010/gallery/upload" 형식으로 작성해주어도 된다.
             headers: {
                 // 전송 할 데이터에 텍스트가 아닌 파일이 함께 전송된다고 머릿말로 알려주기
                 'Content-Type': 'multipart/form-data'
@@ -34,7 +38,7 @@ const Board = () =>  {
     }
 
     const loadPost = () => { // const 로 기능을 미리 작성해놓기(나중에 필요할 때 기능을 사용하기 위함)
-        axios.get("http://localhost:9010/posts") // Java Controller 단에서 설정해둔 url api 주소에서 데이터 가져오기
+        axios.get(postsAPI) // Java Controller 단에서 설정해둔 url api 주소에서 데이터 가져오기
         .then(response => {
             setPosts(response.data);
             console.log(response.data);

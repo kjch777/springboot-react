@@ -11,4 +11,10 @@
 		INSERT INTO user_profiles (username, profile_image_url)
 		VALUES (#{username}, #{profileImageUrl})
 	</insert>
+	
+	<update id="updatePost" parameterType="com.kh.dto.Post">
+		UPDATE posts
+		SET title = #{title}, content = #{content}, image_url = #{imageUrl}
+		WHERE id = #{id}
+	</update>
 </mapper>

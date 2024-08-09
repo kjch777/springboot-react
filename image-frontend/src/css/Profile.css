@@ -1,0 +1,35 @@
+.profile-thumbnail {
+    display: flex;   
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.profile-thumbnail div {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    
+    /* 이미지 효과 시간(초) ◀ 초 숫자가 커질수록 느리게 적용된다.
+       ease ◀ 처음엔 천천히 중간에 빨라졌다가 끝날 때 다시 천천히
+       linear ◀ 처음부터 끝까지 일정한 속도 유지
+       ease-in ◀ 천천히 시작해서 끝으로 갈수록 빨라진다.
+       ease-out ◀ 빨리 시작해서 끝으로 갈수록 느려진다. */
+    transition: transform 0.3s ease;
+}
+
+.profile-thumbnail div:hover {
+    /* 이미지 위에 커서를 올렸을 때 변할 크기 설정
+       숫자가 클수록 이미지가 커진다. */
+    transform: scale(1.1);
+}
+
+.profile-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
