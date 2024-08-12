@@ -8,6 +8,8 @@ useLocation: URL 의 정보를 포함한 객체이다.
 
 export function UserInfo() {
     const [userInfo, setUserInfo] = useState(null);
+    /***** 2024-08-12 비밀번호 값 설정 추가 *****/
+    const [password, setPassword] = useState(''); // 비밀번호 상태 추가
     const location = useLocation();
     const [loading, setLoading] = useState(true);
 
@@ -44,6 +46,39 @@ export function UserInfo() {
         return <div>데이터 정보 가져오는 중...</div>
     }
 
+    // 회원가입 기능 만들기 ◀ React 에서 Java 로 데이터 전달하기
+    // /naverAPI/register ◀ Java Controller 에서 지정해둔 주소에서 만나 데이터를 주고 받을 것
+    const handleJoinMember = () => {
+        // 만약, 비밀번호 입력 창이 비어있다면
+        if(!password) { // !password ◀ 비밀번호가 없다는 뜻이다.
+            alert("비밀번호를 입력해주세요.");
+            return;
+        }
+
+        // 데이터를 특정 장소에 전달하러 가기
+        // axios.post('어디서 만날 것인지 특정 위치 설정', {주고 받을 데이터를 설정})
+        // axios.post('백엔드주소/naverAPI/register', {})
+        axios.post('http://localhost:9010/naverAPI/register', {
+            id: userInfo.response.id,
+            email: userInfo.response.email,
+            nickname: userInfo.response.nickname,
+            name: userInfo.response.name,
+            gender: userInfo.response.gender,
+            
+            profileImage: userInfo.response.profile_image,
+            
+            password: password
+        })
+        .then(response => {
+            console.log(response.data); // 개발자가 값이 DB 에 정상적으로 들어갔는지 확인하는 코드
+            alert("회원가입이 완료되었습니다."); // client 가 회원가입이 정상적으로 완료됐는지 확인하는 코드
+        })
+        .catch(e => {
+            console.log("개발자가 에러를 확인하는 용도: ", e);
+            alert("회원가입에 실패하였습니다.");
+        })
+    }
+
     return (
         <>
             <h1>회원 정보</h1>
@@ -60,8 +95,13 @@ export function UserInfo() {
             (<p>회원을 찾을 수 없습니다.</p>)}
 
             <div>
-                <h2>회원가입에 필요한 아이디 및 비밀번호 작성하기</h2>
-                <input type='text' />
+                <h2>회원가입에 필요한 비밀번호 작성하기</h2>
+                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                {/*
+                    <input type='password' value={password} onChange={changePW} />
+                    const changePW = (e) => {setPassword(e.target.value)}
+                */}
+                <button onClick={handleJoinMember}>회원가입 하기</button>
             </div>
         </>
     )
