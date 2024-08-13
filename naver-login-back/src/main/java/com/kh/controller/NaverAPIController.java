@@ -55,7 +55,7 @@ public class NaverAPIController {
 		String accessToken = getToken(resResult); // 위 주소에서 작성한 token 을 가져오겠다는 의미의 코드이다.
 		
 		// 여기서 응답에 대한 결과를 전달할 것 ◀ 나중에 프로젝트를 합칠 때는 지워야 하는 주소이다.
-		String redirectUrl = "http://localhost:3000/userinfo?access_token=" + accessToken;
+		String redirectUrl = "http://localhost:3000/signup/naver?access_token=" + accessToken;
 		HttpHeaders header = new HttpHeaders();
 		header.add("Location", redirectUrl);
 		
@@ -78,7 +78,7 @@ public class NaverAPIController {
 	}
 	
 	
-	@GetMapping("/userinfo") // 나중에 callback 에서 가져온 userinfo 가 보이는 주소 값
+	@GetMapping("/signup/naver") // 나중에 callback 에서 가져온 userinfo 가 보이는 주소 값
 	public ResponseEntity<String> getUserInfo(@RequestParam("access_token") String accessToken) {
 		String apiURL = "https://openapi.naver.com/v1/nid/me"; // userinfo 가 담긴 url
 		HttpHeaders headers = new HttpHeaders();
