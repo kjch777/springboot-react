@@ -16,7 +16,13 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	/**
+	 * 로그인 했을 때 로그인 값이 
+	 * total: 1 ◀ 로그인 정보를 조회했을 때 존재하는 칼럼을 1개 발견했기 때문에 1
+	 * total: 0 ◀ 맞지 않는 아이디/비밀번호를 입력했을 때는 존재하는 칼럼을 발견하지 못했기 때문에 0
+	 * **/
 	@PostMapping("/login")
+	// @RequestBody Map<String, String> loginData
 	public ResponseEntity<String> login(@RequestParam("id") String id, @RequestParam("password") String password) {
 		NaverUser naverUser = loginService.login(id, password);
 		if(naverUser != null) { // naverUser 정보가 존재한다면 null 이 아니다.
