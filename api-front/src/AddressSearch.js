@@ -90,8 +90,8 @@ const AddressSearch = () => {
       {address && 
         (<div>
             <div>
-                <input type='text' placeholder='추가 주소 입력(예: 아파트 동/호 수)' value={addAddress} onChange={(e) => setAddAddress(e.target.value)} />
                 선택한 주소: {address}
+                <input type='text' placeholder='추가 주소 입력(예: 아파트 동/호 수)' value={addAddress} onChange={(e) => setAddAddress(e.target.value)} />
             </div>
         </div>)}
       {address && addAddress && 
@@ -101,9 +101,9 @@ const AddressSearch = () => {
 
             {/* 나중에 value={finalAddress} 값을 DB 에 넣어야 할 때 사용한다.
                 주로 최종적으로 DB 에 값을 보낼 input 태그에는 hidden 처리를 하여 client 에게 보이지 않게 한다. */}
-            <input type='text' value={finalAddress} />
+            <input type='text' value={finalAddress} hidden />
+            <button onClick={sendByFetch}>전송하기</button>
         </>)}
-        <button onClick={sendByFetch}>전송하기</button>
     </div>
   );
 };
