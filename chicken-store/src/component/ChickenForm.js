@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import '../css/ChickenForm.css';
 
 export const ChickenForm = () => {
     
@@ -38,7 +39,6 @@ export const ChickenForm = () => {
             </label>
 
             <button onClick={handleSubmit}>등록하기</button>
-            <button>메인으로 돌아가기</button>
         </div>
     )
 }

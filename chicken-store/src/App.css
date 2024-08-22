@@ -1,38 +1,35 @@
-.App {
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+}
+
+.app-container h1 {
   text-align: center;
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-container .chickenMenu-registerButton {
+  display: block;
+
+   /* 시계방향 상 우 하 좌 */
+  margin: 0 auto 20px auto;
+
+  padding: 10px 20px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #28A745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-container .chickenMenu-registerButton:hover {
+  background-color: #218838;
+  transform: scale(1.05);
 }

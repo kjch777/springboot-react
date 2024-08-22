@@ -1,0 +1,54 @@
+.detail-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    /* perspective: 1000px; ◀ 3D 효과에 사용된다. */
+}
+
+.detail-container:hover {
+    /*
+        transform: 변화를 줄 수 있다. 여러 기능을 한꺼번에 적용하려면 띄어쓰기를 하면 된다.
+        transform: translateX(75px) translateY(75px);
+        
+        translateX: 가로로 움직임
+        -숫자px: 왼쪽으로 움직임
+        +숫자px: 오른쪽으로 움직임
+
+        translateY: 세로로 움직임
+        -숫자px: 위쪽로 움직임
+        +숫자px: 아래쪽으로 움직임
+
+        translateZ: 3D 효과에 사용된다.
+        translateZ 는 주로 rotate 와 같이 쓰인다.
+        deg: degree(각도) 의 줄임말
+
+        rotateX(50deg): X 축을 기준으로 50 도 회전하는 것
+        rotateY(50deg): Y 축을 기준으로 50 도 회전하는 것
+
+        0deg: 회전하지 않은 상태
+        90deg: 직각으로 회전한 상태
+        180deg: 반대 방향으로 회전한 상태
+        360deg: 원래 위치로 돌아온 상태
+    */
+    transform: translateY(10px);
+    background-color: lightslategray;
+    color: white;
+}
+
+.detail-container h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.detail-container p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.5; /* line 별 세로 크기 조정(간격) */
+    margin: 10px 0;
+}
