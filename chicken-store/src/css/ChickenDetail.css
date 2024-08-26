@@ -35,7 +35,7 @@
         180deg: 반대 방향으로 회전한 상태
         360deg: 원래 위치로 돌아온 상태
     */
-    transform: translateY(10px);
+    /* transform: translateY(10px); */
     background-color: lightslategray;
     color: white;
 }
@@ -51,4 +51,46 @@
     color: #555;
     line-height: 1.5; /* line 별 세로 크기 조정(간격) */
     margin: 10px 0;
+}
+
+.detail-container input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em; /* == 16px */
+
+    /* 
+        box-sizing: 태그의 전체 넓이와 높이를 어떻게 계산할 것인지 설정하는 속성이다. 
+        - border-box: 넓이와 높이에 텍스트, 이미지, 패딩, 보더까지 포함하여, 전체적으로 계산해준다.
+        - content-box: 넓이와 높이가 텍스트, 이미지와 같은 내용만 계산하여, 유동적으로 박스 크기를 설정해준다.
+    */
+    box-sizing: border-box;
+
+    transition: transform 0.3s ease;
+}
+
+.detail-container input:hover, 
+.detail-container textarea:hover {
+    transform: translateY(5px)
+}
+
+.detail-container button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28A745;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+
+    /* transition: 각 효과마다 변화되는 시간을 다르게 설정하고 싶을 때 사용한다. */
+    transition: background-color 0.3s ease, font-size 0.3s ease;
+}
+
+.detail-container button:hover {
+    background-color: #218838;
+    font-size: 20px;
 }
