@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import { Modal } from "./Modal";
 import { PizzaForm } from "./PizzaForm";
+import '../css/PizzaRouter.css';
 
 export const PizzaRouter = () => {
 

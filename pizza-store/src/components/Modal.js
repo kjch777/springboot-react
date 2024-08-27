@@ -1,3 +1,5 @@
+import '../css/PizzaRouter.css';
+
 /* 
     is: 주로 true/false (boolean) 를 나타낼 때 사용한다.
     on: 주로 이벤트(e, event) 를 처리하기 위한 함수 이름으로 사용된다.
@@ -14,11 +16,9 @@ export const Modal = ({isOpen, onClose, children}) => {
     }
 
     return (
-        <div>
-            <div>
-                <button onClick={onClose}>닫기</button>
-                {children}
-            </div>
+        <div className='modal-container'>
+            <button onClick={onClose}>&times;</button>
+            {children}
         </div>
     )
 }

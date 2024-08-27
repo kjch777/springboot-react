@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.pizza-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pizza-container h1 {
+    font-size: 36px;
+    
+    /* color: #ff4500; */
+    background: linear-gradient(to right, #f3e37c, #f3d34a, #eea243, #f3a738, #f1d9a7);
+    
+    /* 그라디언트가 text 에만 적용될 수 있도록 설정해 준 것이다. */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* 글자의 기존 색상 빼기 */
+    /* 최신 웹 브라우저 환경에서 색상이 적용될 수 있도록 최신 설정을 해준 것이다. */
+    background-clip: text;
+    color: transparent;
+    
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pizza-container ul {
+    list-style: none;
+}
+
+.pizza-container li {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* hover: 커서를 올렸을 때 특정 변화를 일으키는 것 */
+.pizza-container li:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.pizza-name {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+.pizza-description {
+    font-size: 20px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.pizza-price {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ff4500;
+}
+
+.pizza-container button {
+    padding: 10px 20px;
+    background-color: #ffc7b4;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* hover: 커서가 버튼 위에 있을 때 발생 */
+.pizza-container button:hover {
+    background-color: #e63900;
+    color: white;
+}
+
+/* focus: 키보드가 버튼 위에 있을 때 발생 */
+/* outline: none; ◀ tab 을 눌러서 버튼 위에 위치시켰을 때 나오는 검정색 테두리를 없애준 것이다. */
+.pizza-container button:focus {
+    outline: none;
+}

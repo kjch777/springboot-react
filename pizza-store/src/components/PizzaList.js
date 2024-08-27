@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react"
+import '../css/PizzaList.css';
 
 export const PizzaList = () => {
     

@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PizzaRouter } from './components/PizzaRouter';
 import { PizzaList } from './components/PizzaList';
